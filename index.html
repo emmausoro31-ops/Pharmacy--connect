@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}PharmacyConnect{% endblock %}{% block content %}
+<section class="hero"><p class="eyebrow">PHARMACY DISCOVERY</p><h1>Find a pharmacy near you.</h1><p>Discover verified pharmacies, learn about medicines and contact pharmacies directly.</p>
+<form action="{{ url_for('pharmacies') }}" method="get" class="search"><input name="search" maxlength="100" placeholder="Search pharmacies..."><button>Search</button></form></section>
+<section class="section"><div class="section-heading"><h2>Verified pharmacies</h2><a href="{{ url_for('pharmacies') }}">View all →</a></div><div class="cards">
+{% for p in pharmacies %}<article class="card"><span class="verified">✓ Verified pharmacy</span><h3>{{ p.name }}</h3><p>{{ p.address }}</p><a class="button secondary" href="{{ url_for('pharmacy', pharmacy_id=p.id) }}">View pharmacy</a></article>{% else %}<p>No verified pharmacies yet.</p>{% endfor %}</div></section>{% endblock %}
